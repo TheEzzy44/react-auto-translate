@@ -1,4 +1,4 @@
-import React, {ReactElement, createContext, useCallback} from 'react';
+import React, {ReactNode, createContext, useCallback} from 'react';
 import TranslatorFactory from './helpers/translator-factory';
 import {TranslationHandler, CacheProvider} from './types';
 
@@ -12,7 +12,7 @@ type Props = {
   to: string;
   from: string;
   cacheProvider?: CacheProvider;
-  children: string;
+  children: ReactNode;
   googleApiKey: string;
 };
 
@@ -22,7 +22,7 @@ export default function Translator({
   cacheProvider,
   children,
   googleApiKey,
-}: Props): ReactElement {
+}: Props): ReactNode {
   const handleTranslationAsync: TranslationHandler = useCallback(
     async (value, setTranslation) => {
       const options = {
