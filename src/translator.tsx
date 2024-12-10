@@ -1,12 +1,11 @@
-import React, {createContext, useCallback} from 'react';
+import React, {ReactElement, createContext, useCallback} from 'react';
 import TranslatorFactory from './helpers/translator-factory';
 import {TranslationHandler, CacheProvider} from './types';
 
 const defaultHandler: TranslationHandler = () => {};
 
-export const TranslateContext: React.Context<
-  TranslationHandler
-> = createContext(defaultHandler);
+export const TranslateContext: React.Context<TranslationHandler> =
+  createContext(defaultHandler);
 export const LanguageContext: React.Context<string> = createContext('en');
 
 type Props = {
@@ -23,7 +22,7 @@ export default function Translator({
   cacheProvider,
   children,
   googleApiKey,
-}: Props): JSX.Element {
+}: Props): ReactElement {
   const handleTranslationAsync: TranslationHandler = useCallback(
     async (value, setTranslation) => {
       const options = {
